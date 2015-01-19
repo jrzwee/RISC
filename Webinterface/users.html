@@ -1,0 +1,57 @@
+<html>
+<head>
+<title> Users </title>
+<link rel="stylesheet" type="text/css" href="css/basic.css">
+</head>
+
+<body>
+
+<h1>
+&nbsp;&nbsp; <!-- Aus Symmetriegründen -->
+RISC - RFID Integrated Security Check
+</h1>
+
+<h2>
+	<ul>
+		<li> <a href="index.html">Home</a> </li>
+		<li> <a href="users.html">View Users</a> </li>
+		<li> <a href="adduser.html">Add Users</a> </li>
+		<li> <a href="edituser.html">Edit User</a> </li>
+	</ul>
+</h2>
+
+<?php
+
+// Mit Datenbank verbinden
+$DB_Connect = mysql_connect('localhost', 'az', 'inikruz')
+        or die ("Fehler im SYSTEM!");
+
+// Datenbank auswählen
+$DB_Select = mysql_select_db('users')
+        or die("Auswahl der Datenbank fehlgeschlagen!");
+
+// Tabelle auswählen und Abfrage einleiten
+$Tabelle = "SELECT Name, ID FROM Information";
+
+$DB_Abfrage = mysql_query($Tabelle);
+
+echo '<table>';
+echo "<tr> <th>Name</th> <th>ID</th>  </tr>";
+
+while ($row = mysql_fetch_array($DB_Abfrage))
+{
+  echo "<tr>";
+  echo "<td>". $row['Name'] . "</td>";
+  echo "<td>". $row['ID'] . "</td>";
+  echo "</tr>";
+}
+
+echo "</table>";
+
+mysql_close($DB_Connect);
+
+?>
+
+</body>
+</html>
+
