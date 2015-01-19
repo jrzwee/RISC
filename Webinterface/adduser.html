@@ -1,0 +1,74 @@
+<html>
+<head>
+<title> Users </title>
+<link rel="stylesheet" type="text/css" href="css/basic.css">
+</head>
+
+<body>
+
+<h1>
+&nbsp;&nbsp; <!-- Aus Symmetriegründen -->
+RISC - RFID Integrated Security Check
+</h1>
+
+<h2>
+	<ul>
+		<li> <a href="index.html">Home</a> </li>
+		<li> <a href="users.html">View Users</a> </li>
+		<li> <a href="adduser.html">Add Users</a> </li>
+		<li> <a href="edituser.html">Edit User</a> </li>
+	</ul>
+</h2>
+
+<form action="" method="post">
+	<ul>
+		<li> Name: <input type="text" name="username" size="15" maxlength="30" /> </li>	
+		<li> Card ID: <input type="text" name="cardid" size="15" maxlength="30" /> </li>
+		<li> <input type="submit" name="submit" value="Add"/> </li>
+	</ul>
+</form>
+
+<?php
+if(isset($_POST['submit']))
+{	
+	// Daten aus Textbox uebernehmen
+	$username = $_POST["username"];
+	$cardid = $_POST["cardid"];
+	
+	// Ueberpruefung auf sinnvolle Daten
+	if (strlen($username) > 0 && strlen($cardid) > 11)
+	{
+		// Mit Datenbank verbinden
+		$DB_Connect = mysql_connect('localhost', 'az', 'inikruz')
+				or die ("Fehler im SYSTEM!");
+
+		// Datenbank auswaehlen
+		$DB_Select = mysql_select_db('users')
+				or die("Auswahl der Datenbank fehlgeschlagen!");
+
+		$input = "INSERT INTO Information (Name, ID) VALUES ('$username', '$cardid')";
+
+		$DB_Insert = mysql_query($input);
+
+		if($DB_Insert == true)
+		   {
+		   echo "Eintrag war erfolgreich";
+		   }
+		else
+		   {
+		   echo "Fehler beim Speichern";
+		   }
+
+		mysql_close($DB_Connect);
+	} 
+	
+	else 
+	{
+		echo "Fehler bei der Dateneingabe!";
+	}
+}
+?>
+	
+</body>
+</html>
+
