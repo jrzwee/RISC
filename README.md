@@ -12,3 +12,8 @@ To ensure a high level of security I also added a keypad for entering an (person
 Both the Tag ID and the Passcode is sent to the Raspberry Pi.
 On the Raspberry Pi there is an Apache Server and a MySQL Database which contains the Tag ID and the Passcode.
 If the read data is stored on the database, you can enter the room, the building, ...
+
+Programming languages:
+- Arduino
+- Python
+- HTML/PHP/MySQL
