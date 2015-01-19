@@ -70,7 +70,7 @@ try:
 					
 					if getaccess == True:
 						
-						print end + " YESS"
+						print end + " YES"
 						
 						# Get DATE and TIME
 						logdate = time.strftime("%Y-%m-%d")
